@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import Navigation from './Navigation';
 import axios from 'axios';
 
 function HomePage() {
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/posts').then(function (response) {
-      // handle success
-      // console.log(response.data);
-      setPosts(response.data);
-    });
-
-    // .then((data) => setPosts(data.title));
+    axios
+      .get('http://localhost:3000/posts')
+      .then(function (response) {
+        console.log(response.data);
+        setPosts(response.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
-
-  console.log(posts);
 
   return (
     <>
       <div className="container-fluid">
+        <Navigation />
         <div className="row landing-row">
+          <div>Video Game Database</div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 img-col">
             {posts.map((post) => {
               return (
