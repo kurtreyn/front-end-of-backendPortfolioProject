@@ -1,8 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 function Signup() {
   const emailRef = useRef();
@@ -10,20 +8,16 @@ function Signup() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  function signupUser(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
-  }
-
-  async function handleSignup() {
-    setLoading(true);
-    try {
-      await signupUser(emailRef.current.value, passwordRef.current.value);
-    } catch {
-      alert('Error');
-    }
-    setLoading(false);
-    navigate('/profile');
-  }
+  // async function handleSignup() {
+  //   setLoading(true);
+  //   try {
+  //     await signupUser(emailRef.current.value, passwordRef.current.value);
+  //   } catch {
+  //     alert('Error');
+  //   }
+  //   setLoading(false);
+  //   navigate('/profile');
+  // }
 
   return (
     <>
@@ -53,7 +47,6 @@ function Signup() {
               disabled={loading}
               className="w-100 mt-2 btn-log-in"
               type="submit"
-              onClick={handleSignup}
             >
               Sign Up
             </Button>
