@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import logo from '../images/icon-kurt-logo.png';
 
-function Navigation() {
+function Navigation({ handleShow }) {
+  const navigate = useNavigate();
   return (
     <>
       <Navbar className="custom-nav">
@@ -15,8 +16,12 @@ function Navigation() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="">Sign In</Nav.Link>
-              <Nav.Link href="">Sign Out</Nav.Link>
+              <Nav.Link onClick={() => navigate('/users/login')}>
+                Log In
+              </Nav.Link>
+              <Nav.Link onClick={() => navigate('/users/signup')}>
+                Sign Up
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

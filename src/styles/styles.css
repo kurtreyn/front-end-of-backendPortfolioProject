@@ -35,12 +35,75 @@ body {
   padding: 0.5rem;
 }
 
+.post-row {
+  height: 100vh;
+}
+
+.post-row h1 {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.post-row .post-img-col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin-top: 7rem;
+}
+
+.post-row .post-img-col img {
+  max-width: 90%;
+}
+
+@media only screen and (max-width: 800px) {
+  .post-row .post-img-col img {
+    max-width: 70%;
+  }
+}
+
+.post-row .post-text-col {
+  margin-top: 10rem;
+}
+
+.post-row .form-col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.post-row .form-col .btn-sign-up {
+  background-color: #77acf1;
+}
+
+.post-row .form-col img {
+  max-width: 8rem;
+  padding: 0.5rem;
+}
+
+.post-row .form-col img:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
 .landing-row {
   height: 100vh;
 }
 
 .landing-row h1 {
-  font-family: 'Shizuru', cursive, sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .landing-row .img-col {

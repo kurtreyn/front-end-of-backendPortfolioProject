@@ -1,41 +1,67 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from './Navigation';
-import axios from 'axios';
+
+import placeholderImg from '../images/Gowbox.jpg';
 
 function HomePage() {
   const [posts, setPosts] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const fetchPosts = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('http://localhost:3000/posts');
+      // console.log(response);
+      let data = await response.json();
+      console.log(data);
+      setPosts(data);
+      posts ? setLoading(false) : setLoading(true);
+      console.log(posts.length);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/posts')
-      .then(function (response) {
-        console.log(response.data);
-        setPosts(response.data);
-      })
-      .catch((err) => console.log(err));
+    fetchPosts();
   }, []);
+
+  const LoadingScreen = () => (
+    <div>
+      <h2>Loading content...</h2>
+    </div>
+  );
+
+  const PostScreen = () =>
+    posts.map((post) => {
+      return (
+        <>
+          <div
+            key={post.id}
+            className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 post-img-col"
+          >
+            <h2>{post.title}</h2>
+            <img src={post.image} alt={post.title} />
+          </div>
+          <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 post-text-col">
+            <p>{post.description}</p>
+          </div>
+        </>
+      );
+    });
+
+  console.log(`loading is: ${loading}`);
 
   return (
     <>
       <div className="container-fluid">
-        <Navigation />
-        <div className="row landing-row">
-          <div>Video Game Database</div>
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 img-col">
-            {posts.map((post) => {
-              return (
-                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 img-col">
-                  <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 img-col">
-                    {post.title}
-                  </div>
-                  <img src={post.image} alt={post.title} />
-                  <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 img-col">
-                    {post.description}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+        <Navigation handleShow={handleShow} />
+        <div className="row post-row">
+          <h1>Video Game Database</h1>
+          {loading ? <LoadingScreen /> : <PostScreen />}
         </div>
       </div>
     </>
