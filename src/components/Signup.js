@@ -16,7 +16,7 @@ function Signup() {
   //     alert('Error');
   //   }
   //   setLoading(false);
-  //   navigate('/profile');
+  //   navigate('/');
   // }
 
   return (

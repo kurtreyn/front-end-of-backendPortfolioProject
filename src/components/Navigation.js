@@ -1,11 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import ModalWindow from './ModalWindow';
 import logo from '../images/icon-kurt-logo.png';
 
-function Navigation({ handleShow }) {
-  const navigate = useNavigate();
+function Navigation() {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleSignUpShow = () => setShow(true);
+  const handleLoginShow = () => setShow(true);
+  const [title, setTitle] = useState('');
+
+  const SignUpModal = () => {
+    return (
+      <ModalWindow
+        show={show}
+        setShow={setShow}
+        handleClose={handleClose}
+        handleShow={handleSignUpShow}
+        title={title}
+        setTitle={setTitle}
+      />
+    );
+  };
+
+  const LoginModal = () => {
+    return (
+      <ModalWindow
+        show={show}
+        setShow={setShow}
+        handleClose={handleClose}
+        handleShow={handleLoginShow}
+        title={title}
+        setTitle={setTitle}
+      />
+    );
+  };
+
   return (
     <>
       <Navbar className="custom-nav">
@@ -16,16 +47,18 @@ function Navigation({ handleShow }) {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link onClick={() => navigate('/users/login')}>
-                Log In
+              <Nav.Link href="" onClick={handleLoginShow}>
+                Sign In
               </Nav.Link>
-              <Nav.Link onClick={() => navigate('/users/signup')}>
+              <Nav.Link href="" onClick={handleSignUpShow}>
                 Sign Up
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <SignUpModal title="SIGN UP" />
+      <LoginModal title="Log In" />
     </>
   );
 }
