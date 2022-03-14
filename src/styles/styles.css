@@ -156,6 +156,27 @@ body {
           transform: scale(1.05);
 }
 
+.login-signup-row {
+  height: 100vh;
+}
+
+.login-signup-row h1 {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.login-signup-row .login-signup-col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
 .edit-profile-row {
   margin-top: 1rem;
 }

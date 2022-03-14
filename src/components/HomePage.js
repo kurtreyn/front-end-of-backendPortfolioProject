@@ -12,9 +12,7 @@ function HomePage() {
     setLoading(true);
     try {
       const response = await fetch('http://localhost:3000/posts');
-      // console.log(response);
       let data = await response.json();
-      // console.log(data);
       setPosts(data);
       setLoading(false);
     } catch (error) {
@@ -26,17 +24,12 @@ function HomePage() {
     fetchPosts();
   }, []);
 
-  // posts.map((item) => {
-  //   console.log(item.title);
-  // });
-
   return (
     <>
       <div className="container-fluid">
         <Navigation />
         <div className="row post-row">
           <h1>Video Game Database</h1>
-          {/* <PostScreen posts={posts} /> */}
           {loading ? <LoadingScreen /> : <PostScreen posts={posts} />}
         </div>
       </div>

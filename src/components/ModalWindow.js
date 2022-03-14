@@ -1,43 +1,71 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Modal, Form, Button, Card } from 'react-bootstrap';
 
-function ModalWindow({ show, handleClose, title, onClick, handleModalClose }) {
-  const usernameRef = useRef();
-  const passwordRef = useRef();
+function ModalWindow({ show, handleClose, onClick, handleModalClose }) {
+  const [loading, setLoading] = useState(false);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [image, setImage] = useState('');
+
+  async function handlePost() {
+    setLoading(true);
+    try {
+      const response = await fetch('http://localhost:3000/posts', {
+        method: 'POST',
+        body: JSON.stringify({
+          title: title,
+          description: description,
+          image: image,
+        }),
+      });
+      console.log(response);
+    } catch (errors) {
+      console.log(errors);
+    }
+    setLoading(false);
+  }
 
   return (
     <Modal className="modal-window" show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
+        <Modal.Title>Post</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Card>
           <Card.Body>
-            <Form onSubmit="">
-              <Form.Group id="username" placeholder="username">
+            <Form>
+              <Form.Group id="title" placeholder="Title">
                 <Form.Control
-                  type="username"
-                  placeholder="user name"
-                  ref={usernameRef}
+                  type="title"
+                  placeholder="title"
+                  onChange={(e) => setTitle(e.target.value)}
                   required
                 />
               </Form.Group>
-              <Form.Group id="password" className="mt-2">
+              <Form.Group id="description" className="mt-2">
                 <Form.Control
-                  type="password"
-                  placeholder="password"
-                  ref={passwordRef}
+                  type="textarea"
+                  placeholder="description"
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                />
+              </Form.Group>
+              <Form.Group id="imageURL" className="mt-2">
+                <Form.Control
+                  type="imageURL"
+                  placeholder="image URL"
+                  onChange={(e) => setImage(e.target.value)}
                   required
                 />
               </Form.Group>
 
               <Button
-                // disabled={loading}
+                disabled={loading}
                 className="w-100 mt-2 btn-log-in"
                 type="submit"
-                onClick={() => onClick()}
+                onClick={handlePost}
               >
-                Sign Up
+                Post
               </Button>
             </Form>
           </Card.Body>

@@ -8,46 +8,14 @@ function Navigation() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleSignUpShow = () => setShow(true);
-  const handleLoginShow = () => setShow(true);
-  // const handleShow = () => setShow(true);
-  const [title, setTitle] = useState('');
-
-  const handleModalClose = function () {
-    setTitle('');
-    handleClose();
-  };
-
-  const SignUpModal = () => {
-    return (
-      <ModalWindow
-        show={show}
-        setShow={setShow}
-        handleClose={handleModalClose}
-        handleShow={handleSignUpShow}
-        title={title}
-      />
-    );
-  };
-
-  const LoginModal = () => {
-    return (
-      <ModalWindow
-        show={show}
-        setShow={setShow}
-        handleClose={handleModalClose}
-        handleShow={handleLoginShow}
-        title={title}
-      />
-    );
-  };
+  const handleShow = () => setShow(true);
 
   return (
     <>
       <Navbar className="custom-nav">
         <Container>
-          <Navbar.Brand href="#home">
-            <img src={logo} className="nav-logo" />
+          <Navbar.Brand href="/">
+            <img src={logo} className="nav-logo" alt="logo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -58,12 +26,18 @@ function Navigation() {
               <Nav.Link href="" onClick={() => navigate('/signup')}>
                 Sign Up
               </Nav.Link>
+              <Nav.Link href="" onClick={handleShow}>
+                Create Post
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <LoginModal />
-      <SignUpModal />
+      <ModalWindow
+        handleShow={handleShow}
+        handleClose={handleClose}
+        show={show}
+      />
     </>
   );
 }

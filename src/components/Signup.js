@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import Navigation from './Navigation';
+
+import gameCollage from '../images/game-collage.png';
 
 function Signup() {
-  // const usernameRef = useRef();
-  // const passwordRef = useRef();
   const [loading, setLoading] = useState(false);
   const [loginCred, setLoginCred] = useState({ username: '', password: '' });
   const navigate = useNavigate();
@@ -25,46 +26,53 @@ function Signup() {
     } catch (errors) {
       console.log(errors);
     }
+    // navigate('/');
   }
 
   return (
-    <>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Sign Up</h2>
+    <div className="container-fluid">
+      <Navigation />
+      <div className="row login-signup-row">
+        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 login-signup-text-col">
+          <Card>
+            <Card.Body>
+              <h2 className="text-center mb-4">Sign Up</h2>
 
-          <Form onSubmit="">
-            <Form.Group id="username" placeholder="username">
-              <Form.Control
-                type="username"
-                placeholder="user name"
-                // ref={usernameRef}
-                onChange={(e) => setLoginCred({ username: e.target.value })}
-                required
-              />
-            </Form.Group>
-            <Form.Group id="password" className="mt-2">
-              <Form.Control
-                type="password"
-                placeholder="password"
-                // ref={passwordRef}
-                onChange={(e) => setLoginCred({ password: e.target.value })}
-                required
-              />
-            </Form.Group>
+              <Form>
+                <Form.Group id="username" placeholder="username">
+                  <Form.Control
+                    type="username"
+                    placeholder="user name"
+                    onChange={(e) => setLoginCred({ username: e.target.value })}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group id="password" className="mt-2">
+                  <Form.Control
+                    type="password"
+                    placeholder="password"
+                    onChange={(e) => setLoginCred({ password: e.target.value })}
+                    required
+                  />
+                </Form.Group>
 
-            <Button
-              disabled={loading}
-              className="w-100 mt-2 btn-log-in"
-              type="submit"
-              onClick={handleSignup}
-            >
-              Sign Up
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-    </>
+                <Button
+                  disabled={loading}
+                  className="w-100 mt-2 btn-log-in"
+                  type="submit"
+                  onClick={handleSignup}
+                >
+                  Sign Up
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 login-signup-img-col">
+          <img src={gameCollage} alt="game collage" />
+        </div>
+      </div>
+    </div>
   );
 }
 
