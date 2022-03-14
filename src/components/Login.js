@@ -43,7 +43,6 @@ function Login() {
                   <Form.Control
                     type="username"
                     placeholder="user name"
-                    // ref={usernameRef}
                     onChange={(e) => setUserName(e.target.value)}
                     required
                   />
@@ -52,8 +51,7 @@ function Login() {
                   <Form.Control
                     type="password"
                     placeholder="password"
-                    // ref={passwordRef}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setUserName(e.target.value)}
                     required
                   />
                 </Form.Group>

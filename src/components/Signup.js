@@ -8,7 +8,8 @@ import gameCollage from '../images/game-collage.png';
 
 function Signup() {
   const [loading, setLoading] = useState(false);
-  const [loginCred, setLoginCred] = useState({ username: '', password: '' });
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   // console.log(loginCred.username, loginCred.password);
@@ -19,9 +20,10 @@ function Signup() {
       const response = await fetch('http://localhost:3000/users/signup', {
         method: 'POST',
         body: JSON.stringify({
-          username: loginCred.username,
-          password: loginCred.password,
+          username: username,
+          password: password,
         }),
+        redirect: 'follow',
       });
       console.log(response);
     } catch (errors) {
@@ -29,6 +31,28 @@ function Signup() {
     }
     // navigate('/');
   }
+
+  // async function handleSignup() {
+  //   const myHeaders = new Headers();
+  //   myHeaders.append('Content-Type', 'application/json');
+
+  //   const raw = JSON.stringify({
+  //     username: 'username',
+  //     password: 'password',
+  //   });
+
+  //   var requestOptions = {
+  //     method: 'POST',
+  //     headers: myHeaders,
+  //     body: raw,
+  //     redirect: 'follow',
+  //   };
+
+  //   fetch('http://localhost:3000/users/signup', requestOptions)
+  //     .then((response) => response.text())
+  //     .then((result) => console.log(result))
+  //     .catch((error) => console.log('error', error));
+  // }
 
   return (
     <div className="container-fluid">
@@ -44,7 +68,7 @@ function Signup() {
                   <Form.Control
                     type="username"
                     placeholder="user name"
-                    onChange={(e) => setLoginCred({ username: e.target.value })}
+                    onChange={(e) => setUserName(e.target.value)}
                     required
                   />
                 </Form.Group>
@@ -52,7 +76,7 @@ function Signup() {
                   <Form.Control
                     type="password"
                     placeholder="password"
-                    onChange={(e) => setLoginCred({ password: e.target.value })}
+                    onChange={(e) => setUserName(e.target.value)}
                     required
                   />
                 </Form.Group>
