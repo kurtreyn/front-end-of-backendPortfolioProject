@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Modal, Form, Button, Card } from 'react-bootstrap';
 
-function ModalWindow({ show, handleClose, title }) {
+function ModalWindow({ show, handleClose, title, onClick, handleModalClose }) {
   const usernameRef = useRef();
   const passwordRef = useRef();
 
@@ -35,7 +35,7 @@ function ModalWindow({ show, handleClose, title }) {
                 // disabled={loading}
                 className="w-100 mt-2 btn-log-in"
                 type="submit"
-                // onClick={handleSignup}
+                onClick={() => onClick()}
               >
                 Sign Up
               </Button>

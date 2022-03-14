@@ -9,30 +9,36 @@ function Navigation() {
   const handleClose = () => setShow(false);
   const handleSignUpShow = () => setShow(true);
   const handleLoginShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
   const [title, setTitle] = useState('');
 
+  const handleModalClose = function () {
+    setTitle('');
+    handleClose();
+  };
+
   const SignUpModal = () => {
+    setTitle('Sign Up');
     return (
       <ModalWindow
         show={show}
         setShow={setShow}
-        handleClose={handleClose}
+        handleClose={handleModalClose}
         handleShow={handleSignUpShow}
         title={title}
-        setTitle={setTitle}
       />
     );
   };
 
   const LoginModal = () => {
+    setTitle('Log In');
     return (
       <ModalWindow
         show={show}
         setShow={setShow}
-        handleClose={handleClose}
+        handleClose={handleModalClose}
         handleShow={handleLoginShow}
         title={title}
-        setTitle={setTitle}
       />
     );
   };
@@ -57,8 +63,8 @@ function Navigation() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <SignUpModal title="SIGN UP" />
-      <LoginModal title="Log In" />
+      <LoginModal />
+      <SignUpModal />
     </>
   );
 }
