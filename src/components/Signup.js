@@ -3,25 +3,28 @@ import { Form, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 function Signup() {
-  const usernameRef = useRef();
-  const passwordRef = useRef();
+  // const usernameRef = useRef();
+  // const passwordRef = useRef();
   const [loading, setLoading] = useState(false);
+  const [loginCred, setLoginCred] = useState({ username: '', password: '' });
   const navigate = useNavigate();
 
-  const signupUser = (username, password) => {
-    username = JSON.stringify(usernameRef);
-    password = JSON.stringify(passwordRef);
-  };
+  console.log(loginCred.username, loginCred.password);
 
   async function handleSignup() {
     setLoading(true);
     try {
-      await signupUser(usernameRef.current.value, passwordRef.current.value);
-    } catch {
-      alert('Error');
+      const response = await fetch('http://localhost:3000/users/signup', {
+        method: 'POST',
+        body: JSON.stringify({
+          username: loginCred.username,
+          password: loginCred.password,
+        }),
+      });
+      console.log(response);
+    } catch (errors) {
+      console.log(errors);
     }
-    setLoading(false);
-    navigate('/');
   }
 
   return (
@@ -35,7 +38,8 @@ function Signup() {
               <Form.Control
                 type="username"
                 placeholder="user name"
-                ref={usernameRef}
+                // ref={usernameRef}
+                onChange={(e) => setLoginCred({ username: e.target.value })}
                 required
               />
             </Form.Group>
@@ -43,7 +47,8 @@ function Signup() {
               <Form.Control
                 type="password"
                 placeholder="password"
-                ref={passwordRef}
+                // ref={passwordRef}
+                onChange={(e) => setLoginCred({ password: e.target.value })}
                 required
               />
             </Form.Group>

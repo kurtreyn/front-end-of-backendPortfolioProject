@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navigation from './Navigation';
 import PostScreen from './PostScreen';
 import LoadingScreen from './LoadingScreen';
-import axios from 'axios';
+// import axios from 'axios';
 
 function HomePage() {
   const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ function HomePage() {
       const response = await fetch('http://localhost:3000/posts');
       // console.log(response);
       let data = await response.json();
-      console.log(data);
+      // console.log(data);
       setPosts(data);
       setLoading(false);
     } catch (error) {
@@ -26,9 +26,9 @@ function HomePage() {
     fetchPosts();
   }, []);
 
-  posts.map((item) => {
-    console.log(item.title);
-  });
+  // posts.map((item) => {
+  //   console.log(item.title);
+  // });
 
   return (
     <>
