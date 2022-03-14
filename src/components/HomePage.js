@@ -16,9 +16,6 @@ function HomePage() {
       let data = await response.json();
       console.log(data);
       setPosts(data);
-
-      // posts ? setLoading(false) : setLoading(true);
-      // console.log(posts.length);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -32,20 +29,6 @@ function HomePage() {
   posts.map((item) => {
     console.log(item.title);
   });
-
-  // useEffect(() => {
-  //   axios.get('http://localhost:3000/posts').then(function (response) {
-  //     // handle success
-  //     console.log(response.data);
-  //     setPosts(response.data);
-  //   });
-
-  //   // .then((data) => setPosts(data.title));
-  // }, []);
-
-  // console.log(`posts are: ${posts}`);
-
-  // console.log(`loading is: ${loading}`);
 
   return (
     <>

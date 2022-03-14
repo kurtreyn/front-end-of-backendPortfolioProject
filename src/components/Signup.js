@@ -3,21 +3,26 @@ import { Form, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 function Signup() {
-  const emailRef = useRef();
+  const usernameRef = useRef();
   const passwordRef = useRef();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // async function handleSignup() {
-  //   setLoading(true);
-  //   try {
-  //     await signupUser(emailRef.current.value, passwordRef.current.value);
-  //   } catch {
-  //     alert('Error');
-  //   }
-  //   setLoading(false);
-  //   navigate('/');
-  // }
+  const signupUser = (username, password) => {
+    username = JSON.stringify(usernameRef);
+    password = JSON.stringify(passwordRef);
+  };
+
+  async function handleSignup() {
+    setLoading(true);
+    try {
+      await signupUser(usernameRef.current.value, passwordRef.current.value);
+    } catch {
+      alert('Error');
+    }
+    setLoading(false);
+    navigate('/');
+  }
 
   return (
     <>
@@ -26,11 +31,11 @@ function Signup() {
           <h2 className="text-center mb-4">Sign Up</h2>
 
           <Form onSubmit="">
-            <Form.Group id="email" placeholder="email">
+            <Form.Group id="username" placeholder="username">
               <Form.Control
-                type="email"
-                placeholder="email"
-                ref={emailRef}
+                type="username"
+                placeholder="user name"
+                ref={usernameRef}
                 required
               />
             </Form.Group>
@@ -47,6 +52,7 @@ function Signup() {
               disabled={loading}
               className="w-100 mt-2 btn-log-in"
               type="submit"
+              onClick={handleSignup}
             >
               Sign Up
             </Button>

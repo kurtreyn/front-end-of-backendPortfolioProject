@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 function PostScreen({ posts }) {
-  // posts.map((item) => {
-  //   console.log(item.title);
-  // });
   return posts.map((post) => {
     return (
       <>

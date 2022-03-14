@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import ModalWindow from './ModalWindow';
 import logo from '../images/icon-kurt-logo.png';
 
 function Navigation() {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleSignUpShow = () => setShow(true);
@@ -51,10 +52,10 @@ function Navigation() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="" onClick={handleLoginShow}>
+              <Nav.Link href="" onClick={() => navigate('/login')}>
                 Sign In
               </Nav.Link>
-              <Nav.Link href="" onClick={handleSignUpShow}>
+              <Nav.Link href="" onClick={() => navigate('/signup')}>
                 Sign Up
               </Nav.Link>
             </Nav>
