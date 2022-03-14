@@ -18,7 +18,6 @@ function Navigation() {
   };
 
   const SignUpModal = () => {
-    setTitle('Sign Up');
     return (
       <ModalWindow
         show={show}
@@ -31,7 +30,6 @@ function Navigation() {
   };
 
   const LoginModal = () => {
-    setTitle('Log In');
     return (
       <ModalWindow
         show={show}

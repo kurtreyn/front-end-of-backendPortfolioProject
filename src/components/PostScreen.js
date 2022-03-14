@@ -4,12 +4,13 @@ function PostScreen({ loading, setLoading }) {
   const [posts, setPosts] = useState(null);
 
   const fetchPosts = async () => {
+    setLoading(true);
     try {
       const response = await fetch('http://localhost:3000/posts');
       console.log(response);
       let data = await response.json();
       console.log(data);
-      //   setPosts(data);
+      setPosts(data);
       posts ? setLoading(false) : setLoading(true);
       console.log(posts.length);
     } catch (error) {

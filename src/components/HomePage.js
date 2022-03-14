@@ -4,7 +4,7 @@ import PostScreen from './PostScreen';
 import LoadingScreen from './LoadingScreen';
 
 function HomePage() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   return (
     <>
