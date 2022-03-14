@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navigation from './Navigation';
 
@@ -21,6 +22,7 @@ function Login() {
           password: password,
         }),
       });
+      console.log(response.bodyUsed);
     } catch (errors) {
       console.log(errors);
     }

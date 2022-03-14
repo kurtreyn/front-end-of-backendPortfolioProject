@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Navigation from './Navigation';
+import axios from 'axios';
 
 import gameCollage from '../images/game-collage.png';
 
@@ -10,7 +11,7 @@ function Signup() {
   const [loginCred, setLoginCred] = useState({ username: '', password: '' });
   const navigate = useNavigate();
 
-  console.log(loginCred.username, loginCred.password);
+  // console.log(loginCred.username, loginCred.password);
 
   async function handleSignup() {
     setLoading(true);
