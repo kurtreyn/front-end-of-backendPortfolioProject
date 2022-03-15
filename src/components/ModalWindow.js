@@ -8,8 +8,10 @@ function ModalWindow({ show, handleClose, onClick, handleModalClose }) {
   const [image, setImage] = useState('');
 
   async function handlePost() {
-    const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
+    const bearer = 'Bearer ' + localStorage.getItem('token');
+    const theHeaders = new Headers();
+    theHeaders.append('Authorization', bearer);
+    theHeaders.append('Content-Type', 'application/json');
 
     const raw = JSON.stringify({
       title: title,
@@ -19,43 +21,29 @@ function ModalWindow({ show, handleClose, onClick, handleModalClose }) {
 
     const requestOptions = {
       method: 'POST',
-      headers: myHeaders,
+      headers: theHeaders,
       body: raw,
       redirect: 'follow',
     };
     setLoading(true);
     try {
       const response = await fetch(
-        'http://localhost:3000/users/signup',
+        'http://localhost:3000/posts',
         requestOptions
       );
-      console.log(response);
+      if (response.status === 200) {
+        alert('Post created successfully');
+      } else {
+        alert(response.statusText);
+      }
+      // console.log(response);
+      // console.log(bearer);
     } catch (errors) {
       console.log(errors);
+      alert(errors.message);
     }
     handleClose();
   }
-
-  // async function handlePost() {
-  //   const raw = JSON.stringify({
-  //     title: title,
-  //     description: description,
-  //     image: image,
-  //   });
-  //   setLoading(true);
-  //   try {
-  //     const response = await fetch('http://localhost:3000/posts', {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         raw,
-  //       }),
-  //     });
-  //     console.log(response);
-  //   } catch (errors) {
-  //     console.log(errors);
-  //   }
-  //   setLoading(false);
-  // }
 
   return (
     <Modal className="modal-window" show={show} onHide={handleClose}>

@@ -12,8 +12,8 @@ function Signup() {
   const navigate = useNavigate();
 
   async function handleSignup() {
-    const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
+    const theHeaders = new Headers();
+    theHeaders.append('Content-Type', 'application/json');
 
     const raw = JSON.stringify({
       username: username,
@@ -22,19 +22,23 @@ function Signup() {
 
     const requestOptions = {
       method: 'POST',
-      headers: myHeaders,
+      headers: theHeaders,
       body: raw,
       redirect: 'follow',
     };
     setLoading(true);
     try {
-      const response = await fetch(
-        'http://localhost:3000/users/signup',
-        requestOptions
-      );
-      console.log(response);
+      await fetch('http://localhost:3000/users/signup', requestOptions)
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.success) {
+            // localStorage.setItem('token', response.token);
+            console.log(response);
+          }
+        });
     } catch (errors) {
       console.log(errors);
+      alert(errors.message);
     }
     navigate('/');
   }

@@ -10,6 +10,11 @@ function Navigation() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const handleLogout = async () => {
+    localStorage.removeItem('token');
+    alert('Logout successful');
+  };
+
   return (
     <>
       <Navbar className="custom-nav">
@@ -29,7 +34,7 @@ function Navigation() {
               <Nav.Link href="" onClick={handleShow}>
                 Create Post
               </Nav.Link>
-              <Nav.Link href="" onClick={() => navigate('')}>
+              <Nav.Link href="" onClick={handleLogout}>
                 Log Out
               </Nav.Link>
             </Nav>

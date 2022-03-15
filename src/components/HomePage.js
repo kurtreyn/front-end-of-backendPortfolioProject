@@ -24,6 +24,8 @@ function HomePage() {
     fetchPosts();
   }, []);
 
+  console.log(posts);
+
   return (
     <>
       <div className="container-fluid">
