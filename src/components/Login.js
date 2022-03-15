@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navigation from './Navigation';
 
@@ -13,20 +12,23 @@ function Login() {
   const navigate = useNavigate();
 
   async function handleLogin() {
+    const raw = JSON.stringify({
+      username: username,
+      password: password,
+    });
     setLoading(true);
     try {
       const response = await fetch('http://localhost:3000/users/login', {
         method: 'POST',
         body: JSON.stringify({
-          username: username,
-          password: password,
+          raw,
         }),
       });
-      console.log(response.bodyUsed);
+      console.log(response);
     } catch (errors) {
       console.log(errors);
     }
-    // navigate('/');
+    navigate('/');
   }
 
   return (

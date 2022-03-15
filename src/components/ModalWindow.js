@@ -8,14 +8,17 @@ function ModalWindow({ show, handleClose, onClick, handleModalClose }) {
   const [image, setImage] = useState('');
 
   async function handlePost() {
+    const raw = JSON.stringify({
+      title: title,
+      description: description,
+      image: image,
+    });
     setLoading(true);
     try {
       const response = await fetch('http://localhost:3000/posts', {
         method: 'POST',
         body: JSON.stringify({
-          title: title,
-          description: description,
-          image: image,
+          raw,
         }),
       });
       console.log(response);

@@ -12,47 +12,49 @@ function Signup() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  // console.log(loginCred.username, loginCred.password);
-
   async function handleSignup() {
+    const raw = JSON.stringify({
+      username: username,
+      password: password,
+    });
     setLoading(true);
     try {
       const response = await fetch('http://localhost:3000/users/signup', {
         method: 'POST',
         body: JSON.stringify({
-          username: username,
-          password: password,
+          raw,
         }),
         redirect: 'follow',
       });
+
       console.log(response);
     } catch (errors) {
       console.log(errors);
     }
-    // navigate('/');
+    navigate('/');
   }
 
-  // async function handleSignup() {
-  //   const myHeaders = new Headers();
-  //   myHeaders.append('Content-Type', 'application/json');
+  async function handleSignup() {
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
 
-  //   const raw = JSON.stringify({
-  //     username: 'username',
-  //     password: 'password',
-  //   });
+    const raw = JSON.stringify({
+      username: username,
+      password: password,
+    });
 
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: 'follow',
-  //   };
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
 
-  //   fetch('http://localhost:3000/users/signup', requestOptions)
-  //     .then((response) => response.text())
-  //     .then((result) => console.log(result))
-  //     .catch((error) => console.log('error', error));
-  // }
+    fetch('http://localhost:3000/users/signup', requestOptions)
+      .then((response) => console.log(response))
+      // .then((result) => console.log(result))
+      .catch((error) => console.log('error', error));
+  }
 
   return (
     <div className="container-fluid">
@@ -76,7 +78,7 @@ function Signup() {
                   <Form.Control
                     type="password"
                     placeholder="password"
-                    onChange={(e) => setUserName(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                 </Form.Group>
