@@ -44,7 +44,7 @@ function Login() {
   }
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid page-container">
       <Navigation />
       <div className="row login-signup-row">
         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 login-signup-text-col">

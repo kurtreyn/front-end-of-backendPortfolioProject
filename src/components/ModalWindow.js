@@ -65,6 +65,7 @@ function ModalWindow({ show, handleClose, onClick, handleModalClose }) {
               <Form.Group id="description" className="mt-2">
                 <Form.Control
                   type="textarea"
+                  as="textarea"
                   placeholder="description"
                   onChange={(e) => setDescription(e.target.value)}
                   required
