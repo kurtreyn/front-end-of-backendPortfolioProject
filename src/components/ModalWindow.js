@@ -8,25 +8,54 @@ function ModalWindow({ show, handleClose, onClick, handleModalClose }) {
   const [image, setImage] = useState('');
 
   async function handlePost() {
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+
     const raw = JSON.stringify({
       title: title,
       description: description,
       image: image,
     });
+
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3000/posts', {
-        method: 'POST',
-        body: JSON.stringify({
-          raw,
-        }),
-      });
+      const response = await fetch(
+        'http://localhost:3000/users/signup',
+        requestOptions
+      );
       console.log(response);
     } catch (errors) {
       console.log(errors);
     }
-    setLoading(false);
+    handleClose();
   }
+
+  // async function handlePost() {
+  //   const raw = JSON.stringify({
+  //     title: title,
+  //     description: description,
+  //     image: image,
+  //   });
+  //   setLoading(true);
+  //   try {
+  //     const response = await fetch('http://localhost:3000/posts', {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         raw,
+  //       }),
+  //     });
+  //     console.log(response);
+  //   } catch (errors) {
+  //     console.log(errors);
+  //   }
+  //   setLoading(false);
+  // }
 
   return (
     <Modal className="modal-window" show={show} onHide={handleClose}>

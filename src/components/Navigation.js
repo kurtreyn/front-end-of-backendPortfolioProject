@@ -21,13 +21,16 @@ function Navigation() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="" onClick={() => navigate('/login')}>
-                Sign In
+                Login
               </Nav.Link>
               <Nav.Link href="" onClick={() => navigate('/signup')}>
                 Sign Up
               </Nav.Link>
               <Nav.Link href="" onClick={handleShow}>
                 Create Post
+              </Nav.Link>
+              <Nav.Link href="" onClick={() => navigate('')}>
+                Log Out
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

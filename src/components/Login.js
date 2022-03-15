@@ -12,18 +12,26 @@ function Login() {
   const navigate = useNavigate();
 
   async function handleLogin() {
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+
     const raw = JSON.stringify({
       username: username,
       password: password,
     });
+
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3000/users/login', {
-        method: 'POST',
-        body: JSON.stringify({
-          raw,
-        }),
-      });
+      const response = await fetch(
+        'http://localhost:3000/users/login',
+        requestOptions
+      );
       console.log(response);
     } catch (errors) {
       console.log(errors);
@@ -53,7 +61,7 @@ function Login() {
                   <Form.Control
                     type="password"
                     placeholder="password"
-                    onChange={(e) => setUserName(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                 </Form.Group>

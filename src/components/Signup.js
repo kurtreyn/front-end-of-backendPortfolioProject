@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Navigation from './Navigation';
-import axios from 'axios';
 
 import gameCollage from '../images/game-collage.png';
 
@@ -13,28 +12,6 @@ function Signup() {
   const navigate = useNavigate();
 
   async function handleSignup() {
-    const raw = JSON.stringify({
-      username: username,
-      password: password,
-    });
-    setLoading(true);
-    try {
-      const response = await fetch('http://localhost:3000/users/signup', {
-        method: 'POST',
-        body: JSON.stringify({
-          raw,
-        }),
-        redirect: 'follow',
-      });
-
-      console.log(response);
-    } catch (errors) {
-      console.log(errors);
-    }
-    navigate('/');
-  }
-
-  async function handleSignup() {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
 
@@ -43,17 +20,23 @@ function Signup() {
       password: password,
     });
 
-    var requestOptions = {
+    const requestOptions = {
       method: 'POST',
       headers: myHeaders,
       body: raw,
       redirect: 'follow',
     };
-
-    fetch('http://localhost:3000/users/signup', requestOptions)
-      .then((response) => console.log(response))
-      // .then((result) => console.log(result))
-      .catch((error) => console.log('error', error));
+    setLoading(true);
+    try {
+      const response = await fetch(
+        'http://localhost:3000/users/signup',
+        requestOptions
+      );
+      console.log(response);
+    } catch (errors) {
+      console.log(errors);
+    }
+    navigate('/');
   }
 
   return (
