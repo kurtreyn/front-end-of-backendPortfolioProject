@@ -4,7 +4,7 @@ import PostScreen from './PostScreen';
 import LoadingScreen from './LoadingScreen';
 // import axios from 'axios';
 
-function HomePage({ isAuth, setIsAuth }) {
+function HomePage({ isAuth, setIsAuth, checkLoginStatus }) {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
 
@@ -18,6 +18,7 @@ function HomePage({ isAuth, setIsAuth }) {
     } catch (error) {
       console.log(error);
     }
+    // checkLoginStatus();
   };
 
   useEffect(() => {

@@ -15,7 +15,7 @@ function Login({ isAuth, setIsAuth }) {
     const theHeaders = new Headers();
     theHeaders.append('Content-Type', 'application/json');
 
-    const raw = JSON.stringify({
+    const credentials = JSON.stringify({
       username: username,
       password: password,
     });
@@ -23,7 +23,7 @@ function Login({ isAuth, setIsAuth }) {
     const requestOptions = {
       method: 'POST',
       headers: theHeaders,
-      body: raw,
+      body: credentials,
       redirect: 'follow',
     };
     setLoading(true);
@@ -33,7 +33,9 @@ function Login({ isAuth, setIsAuth }) {
         .then((response) => {
           if (response.success) {
             localStorage.setItem('token', response.token);
+            localStorage.setItem('credentials', JSON.stringify(credentials));
             // console.log(response);
+            // console.log(credentials);
           }
         });
       setIsAuth(true);

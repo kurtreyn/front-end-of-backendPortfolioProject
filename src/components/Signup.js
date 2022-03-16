@@ -15,7 +15,7 @@ function Signup() {
     const theHeaders = new Headers();
     theHeaders.append('Content-Type', 'application/json');
 
-    const raw = JSON.stringify({
+    const credentials = JSON.stringify({
       username: username,
       password: password,
     });
@@ -23,7 +23,7 @@ function Signup() {
     const requestOptions = {
       method: 'POST',
       headers: theHeaders,
-      body: raw,
+      body: credentials,
       redirect: 'follow',
     };
     setLoading(true);
