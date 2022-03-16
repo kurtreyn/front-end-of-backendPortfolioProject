@@ -5,7 +5,7 @@ import Navigation from './Navigation';
 
 import gameCollage from '../images/game-collage.png';
 
-function Login() {
+function Login({ isAuth, setIsAuth }) {
   const [loading, setLoading] = useState(false);
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -33,9 +33,10 @@ function Login() {
         .then((response) => {
           if (response.success) {
             localStorage.setItem('token', response.token);
-            // console.log(response.token);
+            // console.log(response);
           }
         });
+      setIsAuth(true);
     } catch (errors) {
       console.log(errors);
       alert(errors.message);
@@ -45,7 +46,7 @@ function Login() {
 
   return (
     <div className="container-fluid page-container">
-      <Navigation />
+      <Navigation isAuth={isAuth} setIsAuth={setIsAuth} />
       <div className="row login-signup-row">
         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 login-signup-text-col">
           <Card>

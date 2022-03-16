@@ -4,10 +4,9 @@ import PostScreen from './PostScreen';
 import LoadingScreen from './LoadingScreen';
 // import axios from 'axios';
 
-function HomePage() {
+function HomePage({ isAuth, setIsAuth }) {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
 
   const fetchPosts = async () => {
     setLoading(true);
@@ -21,26 +20,16 @@ function HomePage() {
     }
   };
 
-  // async function fetchUser() {
-  //   try {
-  //     const response = await fetch('http://localhost/3000/users');
-  //     console.log(response);
-  //   } catch (errors) {
-  //     console.log(errors);
-  //   }
-  // }
-
   useEffect(() => {
     fetchPosts();
-    // fetchUser();
   }, []);
 
-  // console.log(posts);
+  // console.log(isAuth);
 
   return (
     <>
       <div className="container-fluid homepage-container">
-        <Navigation currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <Navigation isAuth={isAuth} setIsAuth={setIsAuth} />
         <div className="row post-row">
           <h1>Video Game Database</h1>
           {loading ? <LoadingScreen /> : <PostScreen posts={posts} />}

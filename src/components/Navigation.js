@@ -4,7 +4,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import ModalWindow from './ModalWindow';
 import logo from '../images/icon-kurt-logo.png';
 
-function Navigation() {
+function Navigation({ isAuth, setIsAuth }) {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -13,6 +13,8 @@ function Navigation() {
   const handleLogout = async () => {
     localStorage.removeItem('token');
     alert('Logout successful');
+    setIsAuth(false);
+    console.log(isAuth);
   };
 
   return (
@@ -28,9 +30,11 @@ function Navigation() {
               <Nav.Link href="" onClick={() => navigate('/login')}>
                 Login
               </Nav.Link>
+
               <Nav.Link href="" onClick={() => navigate('/signup')}>
                 Sign Up
               </Nav.Link>
+
               <Nav.Link href="" onClick={handleShow}>
                 Create Post
               </Nav.Link>
