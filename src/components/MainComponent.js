@@ -6,17 +6,23 @@ import HomePage from './HomePage';
 
 export default function MainComponent() {
   const [isAuth, setIsAuth] = useState(null);
+  const [bearer, setBearer] = useState(null);
+  const [token, setToken] = useState(null);
 
   function checkLoginStatus() {
-    const token = localStorage.getItem('token');
-    console.log(token);
+    setToken(localStorage.getItem('token'));
+    setBearer('Bearer ' + localStorage.getItem('token'));
+    // console.log(token);
     token ? setIsAuth(true) : setIsAuth(false);
-    console.log(isAuth);
+    // console.log(isAuth);
   }
 
-  useEffect(() => {
-    checkLoginStatus();
-  }, []);
+  // useEffect(() => {
+  //   checkLoginStatus();
+  // }, []);
+
+  console.log(`bearer: ${bearer}`);
+  console.log(`token: ${token}`);
 
   return (
     <div>
@@ -29,6 +35,8 @@ export default function MainComponent() {
               isAuth={isAuth}
               setIsAuth={setIsAuth}
               checkLoginStatus={checkLoginStatus}
+              bearer={bearer}
+              setBearer={setBearer}
             />
           }
         />
