@@ -6,7 +6,6 @@ import HomePage from './HomePage';
 
 export default function MainComponent() {
   const [isAuth, setIsAuth] = useState(null);
-<<<<<<< HEAD
   const token = localStorage.getItem('token');
 
   // function checkLoginStatus() {
@@ -19,28 +18,10 @@ export default function MainComponent() {
   //   }
   //   console.trace(isAuth);
   // }
-=======
-  const [bearer, setBearer] = useState(null);
-  const [token, setToken] = useState(null);
-
-  function checkLoginStatus() {
-    setToken(localStorage.getItem('token'));
-    setBearer('Bearer ' + localStorage.getItem('token'));
-    // console.log(token);
-    token ? setIsAuth(true) : setIsAuth(false);
-    // console.log(isAuth);
-  }
->>>>>>> e40221c01cb60f4aabd0246c093e8589250d44b2
 
   // useEffect(() => {
   //   checkLoginStatus();
   // }, []);
-<<<<<<< HEAD
-=======
-
-  console.log(`bearer: ${bearer}`);
-  console.log(`token: ${token}`);
->>>>>>> e40221c01cb60f4aabd0246c093e8589250d44b2
 
   return (
     <div>
@@ -52,13 +33,7 @@ export default function MainComponent() {
             <HomePage
               isAuth={isAuth}
               setIsAuth={setIsAuth}
-<<<<<<< HEAD
               // checkLoginStatus={checkLoginStatus}
-=======
-              checkLoginStatus={checkLoginStatus}
-              bearer={bearer}
-              setBearer={setBearer}
->>>>>>> e40221c01cb60f4aabd0246c093e8589250d44b2
             />
           }
         />
