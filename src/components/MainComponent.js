@@ -6,17 +6,22 @@ import HomePage from './HomePage';
 
 export default function MainComponent() {
   const [isAuth, setIsAuth] = useState(null);
+  const token = localStorage.getItem('token');
 
-  function checkLoginStatus() {
-    const token = localStorage.getItem('token');
-    console.log(token);
-    token ? setIsAuth(true) : setIsAuth(false);
-    console.log(isAuth);
-  }
+  // function checkLoginStatus() {
+  //   if (token) {
+  //     console.log(`true: ${token}`);
+  //     setIsAuth(true);
+  //   } else {
+  //     setIsAuth(false);
+  //     console.log(`false: ${token}`);
+  //   }
+  //   console.trace(isAuth);
+  // }
 
-  useEffect(() => {
-    checkLoginStatus();
-  }, []);
+  // useEffect(() => {
+  //   checkLoginStatus();
+  // }, []);
 
   return (
     <div>
@@ -28,7 +33,7 @@ export default function MainComponent() {
             <HomePage
               isAuth={isAuth}
               setIsAuth={setIsAuth}
-              checkLoginStatus={checkLoginStatus}
+              // checkLoginStatus={checkLoginStatus}
             />
           }
         />
