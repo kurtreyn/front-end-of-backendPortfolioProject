@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Form, Button, Card } from 'react-bootstrap';
 
-function ModalWindow({ show, handleClose, onClick, handleModalClose }) {
+function ModalWindow({ show, handleClose }) {
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -9,6 +9,8 @@ function ModalWindow({ show, handleClose, onClick, handleModalClose }) {
 
   async function handlePost() {
     const bearer = 'Bearer ' + localStorage.getItem('token');
+    // setBearer('Bearer ' + localStorage.getItem('token'));
+    console.log(`modal bearer: ${bearer}`);
     const theHeaders = new Headers();
     theHeaders.append('Authorization', bearer);
     theHeaders.append('Content-Type', 'application/json');
@@ -36,8 +38,8 @@ function ModalWindow({ show, handleClose, onClick, handleModalClose }) {
       } else {
         alert(response.statusText);
       }
-      // console.log(response);
-      // console.log(bearer);
+      console.log(response);
+      console.log(bearer);
     } catch (errors) {
       console.log(errors);
       alert(errors.message);

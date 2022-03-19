@@ -4,7 +4,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import ModalWindow from './ModalWindow';
 import logo from '../images/icon-kurt-logo.png';
 
-function Navigation({ isAuth, setIsAuth }) {
+function Navigation({ isAuth, setIsAuth, bearer, setBearer }) {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -49,6 +49,8 @@ function Navigation({ isAuth, setIsAuth }) {
         handleShow={handleShow}
         handleClose={handleClose}
         show={show}
+        bearer={bearer}
+        setBearer={setBearer}
       />
     </>
   );
